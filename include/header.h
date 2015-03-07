@@ -29,12 +29,11 @@
   #include <sys/types.h>
   #include <netinet/in.h>
   #include <signal.h>
-  #include <process.h>
   #include <pthread.h>
 #endif
 #ifdef DEV_PLATFORM_WINDOWS
   #include <winsock.h>
   #include <signal.h>
-  //include <process.h>
+  #include <process.h>
   #include <pthread.h>
 #endif

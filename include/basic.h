@@ -8,16 +8,25 @@ bool setting_debug_mode = true;
 	#define endThread() _endthread();
 	#define waitForThread(NAME,TIMEOUT) WaitForSingleObject(NAME,TIMEOUT)
 	#define threadh HANDLE
+
+	#define native_windows if(true)
+	#define native_unix if(false)
 #endif
 #ifdef DEV_PLATFORM_UNIX
 	#define thread(NAME) int NAME()
 	#define beginThread(NAME) (NAME())
 	#define endThread() return 0
 	#define waitForThread(NAME,TIMEOUT) (0)
+	#define ExitThread(CODE) return (CODE)
+	#define Sleep(TIME)
+	#define WSADATA int
 	#define WAIT_OBJECT_0 0
 	#define WAIT_TIMEOUT 1
 	#define threadh int
 	#define SOCKET int
+
+	#define native_windows if(false)
+	#define native_unix if(true)
 #endif
 
 

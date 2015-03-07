@@ -1,10 +1,12 @@
 ECHO := @
 
+DEV_PLATFORM = DEV_PLATFORM_UNIX
 
+DEV_PLATFORM_FLAGS := -D$(DEV_PLATFORM)
 CC := $(ECHO)g++
 CFLINKS := -pthread -lpthread
-CEFLAGS_DEBUG := -pthread -lm -std=c++11 -O2 -Wall -W -Wextra -Wdouble-promotion -pedantic -Wmissing-include-dirs -Wunused -Wuninitialized -Wextra -Wstrict-overflow=3 -Wtrampolines -Wfloat-equal -Wconversion -Wmissing-field-initializers -Wno-multichar -Wpacked -Winline -Wshadow
-CEFLAGS_RELEASE := -pthread -lm -std=c++11 -O3 -w
+CEFLAGS_DEBUG := $(DEV_PLATFORM_FLAGS) -pthread -lm -std=c++11 -O2 -Wall -W -Wextra -Wdouble-promotion -pedantic -Wmissing-include-dirs -Wunused -Wuninitialized -Wextra -Wstrict-overflow=3 -Wtrampolines -Wfloat-equal -Wconversion -Wmissing-field-initializers -Wno-multichar -Wpacked -Winline -Wshadow
+CEFLAGS_RELEASE := $(DEV_PLATFORM_FLAGS) -pthread -lm -std=c++11 -O3 -w
 CEAFTER_FLAGS := -lws2_32
 CEFLAGS := $(CEFLAGS_RELEASE)
 EXAMPLES_FILES := $(wildcard ./examples/src/*.cpp)

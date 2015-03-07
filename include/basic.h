@@ -1,15 +1,4 @@
-#include <winsock.h>
-#include <conio.h>
-#include <signal.h>
-#include <deque>
-#include <string>
-#include <process.h>
-#include <iostream>
-#include <vector>
-#include <functional>
-#include <pthread.h>
-#include <algorithm>
-#include <initializer_list>
+#include "header.h"
 
 bool setting_debug_mode = true;
 
@@ -63,7 +52,7 @@ int strToInt(string s)
      const int len = (signed int)s.size();
      for(; i < len; i++)
           tmp = 10 * tmp + s[i] - 48;
-     return m ? -tmp : tmp;   
+     return m ? -tmp : tmp;
 }
 
 
@@ -77,23 +66,23 @@ inline pair<string, string> splitStrEq(string str) {
 	bool mode = false;
 	string buf = "0";
 	string eq0 = "";
-	string eq1 = "";			
-						
+	string eq1 = "";
+
 	for(int it=0;it<len;++it) {
 		if(str[it]=='=') {
 				mode = true;
 		} else {
-			buf[0] = str[it];									
+			buf[0] = str[it];
 			if(mode) {
 				eq1+=buf;
 		    } else {
 		    	eq0+=buf;
-		    }										
-		}																
+		    }
+		}
 	}
 	return make_pair(eq0, eq1);
-						
-}			
+
+}
 
 class Splitter {
   std::vector<std::string> _tokens;
@@ -104,7 +93,7 @@ public:
   {
     reset ( src, delim );
   }
-  
+
   std::string& operator[] ( size_type i )
   {
     return _tokens.at ( i );

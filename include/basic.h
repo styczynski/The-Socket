@@ -2,10 +2,24 @@
 
 bool setting_debug_mode = true;
 
-#define thread(NAME) void __cdecl NAME(void* Args)
-#define beginThread(NAME)  ((HANDLE)_beginthread(NAME,0,NULL))
-#define endThread() _endthread();
-#define threadh HANDLE
+#ifdef DEV_PLATFORM_WINDOWS
+	#define thread(NAME) void __cdecl NAME(void* Args)
+	#define beginThread(NAME)  ((HANDLE)_beginthread(NAME,0,NULL))
+	#define endThread() _endthread();
+	#define waitForThread(NAME,TIMEOUT) WaitForSingleObject(NAME,TIMEOUT)
+	#define threadh HANDLE
+#endif
+#ifdef DEV_PLATFORM_UNIX
+	#define thread(NAME) int NAME()
+	#define beginThread(NAME) (NAME())
+	#define endThread() return 0
+	#define waitForThread(NAME,TIMEOUT) (0)
+	#define WAIT_OBJECT_0 0
+	#define WAIT_TIMEOUT 1
+	#define threadh int
+#endif
+
+
 #ifdef ALLOW_DEBUG
 	#define DEBUG(CODE) if(setting_debug_mode) CODE;
 #else

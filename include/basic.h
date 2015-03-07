@@ -17,6 +17,7 @@ bool setting_debug_mode = true;
 	#define WAIT_OBJECT_0 0
 	#define WAIT_TIMEOUT 1
 	#define threadh int
+	#define SOCKET int
 #endif
 
 

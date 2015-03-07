@@ -2,11 +2,10 @@ ECHO := @
 
 DEV_PLATFORM = DEV_PLATFORM_UNIX
 
-DEV_PLATFORM_FLAGS := -D$(DEV_PLATFORM)
 CC := $(ECHO)g++
 CFLINKS := -pthread -lpthread
-CEFLAGS_DEBUG := $(DEV_PLATFORM_FLAGS) -pthread -lm -std=c++11 -O2 -Wall -W -Wextra -Wdouble-promotion -pedantic -Wmissing-include-dirs -Wunused -Wuninitialized -Wextra -Wstrict-overflow=3 -Wtrampolines -Wfloat-equal -Wconversion -Wmissing-field-initializers -Wno-multichar -Wpacked -Winline -Wshadow
-CEFLAGS_RELEASE := $(DEV_PLATFORM_FLAGS) -pthread -lm -std=c++11 -O3 -w
+CEFLAGS_DEBUG := -pthread -lm -std=c++11 -O2 -Wall -W -Wextra -Wdouble-promotion -pedantic -Wmissing-include-dirs -Wunused -Wuninitialized -Wextra -Wstrict-overflow=3 -Wtrampolines -Wfloat-equal -Wconversion -Wmissing-field-initializers -Wno-multichar -Wpacked -Winline -Wshadow
+CEFLAGS_RELEASE := -pthread -lm -std=c++11 -O3 -w
 CEAFTER_FLAGS := -lws2_32
 CEFLAGS := $(CEFLAGS_RELEASE)
 EXAMPLES_FILES := $(wildcard ./examples/src/*.cpp)
@@ -42,6 +41,12 @@ clean: clean-all
 
 clean-all: clean-examples
 
+all-windows: DEV_PLATFORM = DEV_PLATFORM_WINDOWS
+all-windows: all
+
+all-unix: DEV_PLATFORM = DEV_PLATFORM_UNIX
+all-unix: all
+
 all: examples
 
 examples: examples_ $(EXAMPLES_OBJ_FILES) $(EXAMPLES_EXE_FILES) clean-examples-build
@@ -65,4 +70,4 @@ clean-examples-build:
 
 ./examples/bin/%.o: ./examples/src/%.cpp
 	$(info Compiling example: $<)
-	$(CC) $(CC_FLAGS) -c -o $@ $< $(AF_FLAGS)
+	$(CC) -D$(DEV_PLATFORM)  $(CC_FLAGS) -c -o $@ $< $(AF_FLAGS)

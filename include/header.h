@@ -9,35 +9,32 @@
   #endif
 #endif
 
+#ifdef DEV_PLATFORM_WINDOWS
+  #pragma message "Using WINDOWS headers configuration."
+#endif
 #ifdef DEV_PLATFORM_UNIX
-  #pragma message ( "Using UNIX headers configuration." )
+  #pragma message "Using UNIX headers configuration."
+#endif
+
+#include <iostream>
+#include <vector>
+#include <functional>
+#include <algorithm>
+#include <initializer_list>
+#include <deque>
+#include <string>
+
+#ifdef DEV_PLATFORM_UNIX
   #include <sys/socket.h>
   #include <sys/types.h>
   #include <netinet/in.h>
-  #include <conio.h>
   #include <signal.h>
-  #include <deque>
-  #include <string>
   #include <process.h>
-  #include <iostream>
-  #include <vector>
-  #include <functional>
   #include <pthread.h>
-  #include <algorithm>
-  #include <initializer_list>
 #endif
 #ifdef DEV_PLATFORM_WINDOWS
-  #pragma message ( "Using WINDOWS headers configuration." )
   #include <winsock.h>
-  #include <conio.h>
   #include <signal.h>
-  #include <deque>
-  #include <string>
   #include <process.h>
-  #include <iostream>
-  #include <vector>
-  #include <functional>
   #include <pthread.h>
-  #include <algorithm>
-  #include <initializer_list>
 #endif

@@ -1,7 +1,6 @@
 [![Made by Styczynsky Digital Systems][badge sts]][link isis97]
 
-[![Platform - Node][badge support node]][link isis97]
-
+[![Platform - Windows][badge support windows]][link isis97]
 
 # The-Socket
 C/C++ Socket Library
